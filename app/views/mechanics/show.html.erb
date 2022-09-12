@@ -4,7 +4,7 @@
 <p>Years: <%= @mechanic.years_experience %></p>
 
 <h4>Rides</h4>
-<% @mechanic.rides_open.each do |ride| %>
+<% @mechanic.rides_open_by_thrill_rating.each do |ride| %>
   <p><%= ride.name %></p>
 <% end %>
 

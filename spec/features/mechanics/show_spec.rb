@@ -39,8 +39,7 @@ RSpec.describe 'mechanics show page' do
 
     it 'I see their name, years of experience, and the names of rides they’re working on' do
       visit "/mechanics/#{@barry.id}"
-      save_and_open_page
-      
+
       expect(page).to have_content("Name: Barry")
       expect(page).to_not have_content("Susan")
       expect(page).to_not have_content("Molly") 
@@ -68,7 +67,7 @@ RSpec.describe 'mechanics show page' do
 
     it 'And the rides are listed by thrill rating in descending order (most thrills first)' do
       visit "/mechanics/#{@barry.id}"
-
+      save_and_open_page
       expect("The Hurler").to appear_before("Jaws")
       expect("Jaws").to appear_before("The Scrambler")
     end
