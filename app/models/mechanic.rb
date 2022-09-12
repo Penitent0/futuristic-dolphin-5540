@@ -3,6 +3,6 @@ class Mechanic < ApplicationRecord
   has_many :rides, through: :ride_mechanics
 
   def self.average_years_experience
-    binding.pry
+    average(:years_experience)
   end
 end
