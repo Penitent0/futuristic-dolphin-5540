@@ -23,14 +23,22 @@ RSpec.describe 'amusement park show page' do
     end
 
     it 'I see the name and price of admissions for that amusement park' do
+      visit "/amusement_parks/#{@six_flags.id}"
 
+      expect(page).to have_content("Name: Six Flags")
+      expect(page).to have_content("Admsission: 75")
+
+      visit "/amusement_parks/#{@universal.id}"
+
+      expect(page).to have_content("Name: Universal Studios")
+      expect(page).to have_content("Admsission: 80")
     end
 
     it 'And I see the names of all the rides that are at that theme park listed in alphabetical order' do
       
     end
 
-    it '' do
+    it 'And I see the average thrill rating of this amusement park’s rides' do
       
     end
   end
