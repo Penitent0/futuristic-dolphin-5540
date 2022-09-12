@@ -72,4 +72,36 @@ RSpec.describe 'mechanics show page' do
       expect("Jaws").to appear_before("The Scrambler")
     end
   end
+
+  # Story 3 - Add a Ride to a Mechanic
+
+  # As a user,
+  # When I go to a mechanics show page
+  # I see a form to add a ride to their workload
+  # When I fill in that field with an id of an existing ride and hit submit
+  # I’m taken back to that mechanic's show page
+  # And I see the name of that newly added ride on this mechanics show page
+
+  describe 'Story 3 - When I go to a mechanics show page' do
+    before :each do
+      @six_flags = AmusementPark.create!(name: 'Six Flags', admission_cost: 75)
+      @universal = AmusementPark.create!(name: 'Universal Studios', admission_cost: 80)
+
+      @hurler = @six_flags.rides.create!(name: 'The Hurler', thrill_rating: 7, open: true)
+      @scrambler = @six_flags.rides.create!(name: 'The Scrambler', thrill_rating: 4, open: true)
+      @ferris = @six_flags.rides.create!(name: 'Ferris Wheel', thrill_rating: 7, open: false)
+
+      @jaws = @universal.rides.create!(name: 'Jaws', thrill_rating: 5, open: true)
+    end
+    it 'I see a form to add a ride to their workload' do
+      visit "/mechanics/#{@barry.id}"
+
+      expect(page).to have_field("add_ride")
+      expect(page).to have_button("Add Ride")
+    end
+
+    it 'when I fill out form I am taken back to machanic show page and see ride has been added' do
+      
+    end
+  end
 end
