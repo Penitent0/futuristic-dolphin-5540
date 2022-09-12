@@ -51,11 +51,9 @@ RSpec.describe 'mechanics show page' do
       expect(page).to have_content("The Scrambler")
       expect(page).to have_content("Jaws")
       expect(page).to_not have_content("Ferris Wheel")
-
     end
 
     it 'And I only see rides that are open' do
-
 
     end
 
