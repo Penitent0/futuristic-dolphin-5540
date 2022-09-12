@@ -67,7 +67,10 @@ RSpec.describe 'mechanics show page' do
     end
 
     it 'And the rides are listed by thrill rating in descending order (most thrills first)' do
-      
+      visit "/mechanics/#{@barry.id}"
+
+      expect("The Hurler").to appear_before("Jaws")
+      expect("Jaws").to appear_before("The Scrambler")
     end
   end
 end

@@ -29,6 +29,6 @@ RSpec.describe Mechanic, type: :model do
     barry.rides << scrambler
     barry.rides << hurler
 
-    expect(barry.rides_open).to eq([hurler, scrambler, jaws])
+    expect(barry.rides_open_by_thrill_rating).to eq([hurler, jaws, scrambler])
   end
 end
