@@ -3,3 +3,6 @@
 <p>Name: <%= @park.name %></p>
 <p>Admission: <%= @park.admission_cost %></p>
 
+<% @park.rides_alpha.each do |ride| %>
+  <p><%= ride.name %></p>
+<% end %>

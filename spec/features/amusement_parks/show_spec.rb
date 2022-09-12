@@ -24,7 +24,7 @@ RSpec.describe 'amusement park show page' do
 
     it 'I see the name and price of admissions for that amusement park' do
       visit "/amusement_parks/#{@six_flags.id}"
-      save_and_open_page
+      
       expect(page).to have_content("Name: Six Flags")
       expect(page).to have_content("Admission: 75")
 
@@ -42,9 +42,11 @@ RSpec.describe 'amusement park show page' do
       expect(page).to have_content(@ferris.name)
 
       expect(@ferris.name).to appear_before(@hurler.name)
+      expect(@hurler.name).to appear_before(@scrambler.name)
+      expect(@scrambler.name).to_not appear_before(@ferris.name)
     end
 
-    it 'And I see the average thrill rating of this amusement park’s rides' do
+    it 'And I see the average thrill rating of this amusement parks rides' do
       
     end
   end
