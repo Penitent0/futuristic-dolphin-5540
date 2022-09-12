@@ -67,7 +67,7 @@ RSpec.describe 'mechanics show page' do
 
     it 'And the rides are listed by thrill rating in descending order (most thrills first)' do
       visit "/mechanics/#{@barry.id}"
-      save_and_open_page
+      
       expect("The Hurler").to appear_before("Jaws")
       expect("Jaws").to appear_before("The Scrambler")
     end
@@ -92,16 +92,27 @@ RSpec.describe 'mechanics show page' do
       @ferris = @six_flags.rides.create!(name: 'Ferris Wheel', thrill_rating: 7, open: false)
 
       @jaws = @universal.rides.create!(name: 'Jaws', thrill_rating: 5, open: true)
+      @barry = Mechanic.create!(name: "Barry", years_experience: 5)
     end
     it 'I see a form to add a ride to their workload' do
       visit "/mechanics/#{@barry.id}"
-
+      save_and_open_page
       expect(page).to have_field("add_ride")
       expect(page).to have_button("Add Ride")
     end
 
     it 'when I fill out form I am taken back to machanic show page and see ride has been added' do
+      visit "/mechanics/#{@barry.id}"
+
+      expect(@barry.rides).to eq([])
+
+      fill_in "add_ride", with: "#{@hurler.id}"
+      click_on "Add Ride"
+
+      expect(current_path).to eq("/mechanics/#{@barry.id}")
       
+      expect(@barry.rides).to eq([@hurler])
+      expect(page).to have_content("The Hurler")
     end
   end
 end

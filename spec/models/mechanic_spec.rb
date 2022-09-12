@@ -31,4 +31,16 @@ RSpec.describe Mechanic, type: :model do
 
     expect(barry.rides_open_by_thrill_rating).to eq([hurler, jaws, scrambler])
   end
+
+  it 'has add ride method' do
+    six_flags = AmusementPark.create!(name: 'Six Flags', admission_cost: 75)
+    
+    hurler = six_flags.rides.create!(name: 'The Hurler', thrill_rating: 7, open: true)
+
+    barry = Mechanic.create!(name: "Barry", years_experience: 5)
+
+    expect(barry.rides).to eq([])
+    barry.add_ride(hurler)
+    expect(barry.rides).to eq([hurler])
+  end
 end
