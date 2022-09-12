@@ -70,6 +70,9 @@ RSpec.describe 'mechanics show page' do
       
       expect("The Hurler").to appear_before("Jaws")
       expect("Jaws").to appear_before("The Scrambler")
+
+      expect("The Scrambler").to_not appear_before("The Hurler")
+      expect("The Scrambler").to_not appear_before("Jaws")
     end
   end
 
@@ -110,9 +113,14 @@ RSpec.describe 'mechanics show page' do
       click_on "Add Ride"
 
       expect(current_path).to eq("/mechanics/#{@barry.id}")
-
-      expect(@barry.rides).to eq([@hurler])
+      
       expect(page).to have_content("The Hurler")
+
+      fill_in "add_ride", with: "#{@jaws.id}"
+      click_on "Add Ride"
+
+      expect(page).to have_content("The Hurler")
+      expect(page).to have_content("Jaws")
     end
   end
 end
