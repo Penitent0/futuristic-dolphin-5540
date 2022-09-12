@@ -24,8 +24,7 @@ ActiveRecord::Schema.define(version: 2022_09_12_150451) do
 
   create_table "mechanics", force: :cascade do |t|
     t.string "name"
-    t.integer "thrill_rating"
-    t.boolean "open"
+    t.integer "years_experience"
   end
 
   create_table "ride_mechanics", force: :cascade do |t|
