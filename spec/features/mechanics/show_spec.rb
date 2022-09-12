@@ -29,8 +29,10 @@ RSpec.describe 'mechanics show page' do
 
       RideMechanic.create!(ride: @hurler, mechanic: @barry)
       RideMechanic.create!(ride: @ferris, mechanic: @susan)
+      RideMechanic.create!(ride: @scrambler, mechanic: @susan)
       RideMechanic.create!(ride: @scrambler, mechanic: @molly)
       RideMechanic.create!(ride: @jaws, mechanic: @jimmy)
+      RideMechanic.create!(ride: @ferris, mechanic: @jimmy)
       RideMechanic.create!(ride: @scrambler, mechanic: @barry)
       RideMechanic.create!(ride: @jaws, mechanic: @barry)
     end
@@ -50,11 +52,18 @@ RSpec.describe 'mechanics show page' do
       expect(page).to have_content("The Hurler")
       expect(page).to have_content("The Scrambler")
       expect(page).to have_content("Jaws")
-      expect(page).to_not have_content("Ferris Wheel")
     end
 
     it 'And I only see rides that are open' do
+      visit "/mechanics/#{@susan.id}"
 
+      expect(page).to have_content("The Scrambler")
+      expect(page).to_not have_content("Ferris Wheel")
+
+      visit "/mechanics/#{@jimmy.id}"
+
+      expect(page).to have_content("Jaws")
+      expect(page).to_not have_content("Ferris Wheel")
     end
 
     it 'And the rides are listed by thrill rating in descending order (most thrills first)' do
