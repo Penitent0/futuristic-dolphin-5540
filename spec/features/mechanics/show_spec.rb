@@ -96,7 +96,7 @@ RSpec.describe 'mechanics show page' do
     end
     it 'I see a form to add a ride to their workload' do
       visit "/mechanics/#{@barry.id}"
-      save_and_open_page
+      
       expect(page).to have_field("add_ride")
       expect(page).to have_button("Add Ride")
     end
@@ -110,7 +110,7 @@ RSpec.describe 'mechanics show page' do
       click_on "Add Ride"
 
       expect(current_path).to eq("/mechanics/#{@barry.id}")
-      
+
       expect(@barry.rides).to eq([@hurler])
       expect(page).to have_content("The Hurler")
     end
