@@ -20,6 +20,8 @@ RSpec.describe 'amusement park show page' do
       @ferris = @six_flags.rides.create!(name: 'Ferris Wheel', thrill_rating: 7, open: false)
 
       @jaws = @universal.rides.create!(name: 'Jaws', thrill_rating: 5, open: true)
+      @spinner = @universal.rides.create!(name: 'Spinner', thrill_rating: 1, open: true)
+      @dropper = @universal.rides.create!(name: 'Dropper', thrill_rating: 3, open: true)
     end
 
     it 'I see the name and price of admissions for that amusement park' do
@@ -44,10 +46,26 @@ RSpec.describe 'amusement park show page' do
       expect(@ferris.name).to appear_before(@hurler.name)
       expect(@hurler.name).to appear_before(@scrambler.name)
       expect(@scrambler.name).to_not appear_before(@ferris.name)
+
+      visit "/amusement_parks/#{@universal.id}"
+
+      expect(page).to have_content(@jaws.name)
+      expect(page).to have_content(@spinner.name)
+      expect(page).to have_content(@dropper.name)
+
+      expect(@dropper.name).to appear_before(@jaws.name)
+      expect(@jaws.name).to appear_before(@spinner.name)
+      expect(@spinner.name).to_not appear_before(@dropper.name)
     end
 
     it 'And I see the average thrill rating of this amusement parks rides' do
+      visit "/amusement_parks/#{@six_flags.id}"
       
+      expect(page).to have_content("Average Thrill Rating: 6")
+
+      visit "/amusement_parks/#{@universal.id}"
+
+      expect(page).to have_content("Average Thrill Rating: 3")
     end
   end
 end

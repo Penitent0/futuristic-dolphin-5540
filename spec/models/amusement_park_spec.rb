@@ -20,6 +20,6 @@ RSpec.describe AmusementPark, type: :model do
     scrambler = six_flags.rides.create!(name: 'The Scrambler', thrill_rating: 4, open: true)
     ferris = six_flags.rides.create!(name: 'Ferris Wheel', thrill_rating: 7, open: false)
 
-    expect(six_flags.average_ride_thrill).to eq(13.33)
+    expect(six_flags.average_ride_thrill).to eq(6)
   end
 end
