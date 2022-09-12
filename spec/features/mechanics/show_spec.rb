@@ -24,10 +24,7 @@ RSpec.describe 'mechanics show page' do
       @susan = Mechanic.create!(name: "Susan", years_experience: 2)
       @molly = Mechanic.create!(name: "Molly", years_experience: 7)
       @jimmy = Mechanic.create!(name: "Jimmy", years_experience: 4)
-      @phil = Mechanic.create!(name: "Phil", years_experience: 1)
-      @marty = Mechanic.create!(name: "Marty", years_experience: 6)
 
-      RideMechanic.create!(ride: @hurler, mechanic: @barry)
       RideMechanic.create!(ride: @ferris, mechanic: @susan)
       RideMechanic.create!(ride: @scrambler, mechanic: @susan)
       RideMechanic.create!(ride: @scrambler, mechanic: @molly)
@@ -35,6 +32,7 @@ RSpec.describe 'mechanics show page' do
       RideMechanic.create!(ride: @ferris, mechanic: @jimmy)
       RideMechanic.create!(ride: @scrambler, mechanic: @barry)
       RideMechanic.create!(ride: @jaws, mechanic: @barry)
+      RideMechanic.create!(ride: @hurler, mechanic: @barry)
     end
 
     it 'I see their name, years of experience, and the names of rides they’re working on' do

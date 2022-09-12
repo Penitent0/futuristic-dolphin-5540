@@ -1,6 +1,5 @@
 class MechanicsController < ApplicationController
   def index
-    binding.pry
     @mechanics = Mechanic.all
   end
 
